@@ -36,7 +36,7 @@ class TicketUpdatedNotification extends Notification
     {
         return (new MailMessage)
                     ->greeting("Hello {$notifiable->name},")
-                    ->line("Ticket [ **{$this->ticket->id}** ] has been updated")
+                    ->line("Ticket [ **{$this->ticket->id}** ] status has been updated")
                     ->action('Check Ticket', route('ticket.show', $this->ticket->id))
                     ->line('Thank you for using our application!');
     }

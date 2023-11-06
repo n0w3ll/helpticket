@@ -38,7 +38,16 @@
                                 <span>{{ $ticket->user->name }}</span>
                             </div>
                             @endif
-                            <p class="text-gray-700 dark:text-gray-500 text-sm ml-auto">{{ $ticket->created_at->diffForHumans() }}</p>
+                            <p class="text-gray-700 dark:text-gray-500 text-sm ml-auto">
+                            @if ($ticket->created_at->eq($ticket->updated_at))
+                                {{ $ticket->created_at->diffForHumans() }}
+                            @else
+                                @if ($ticket->user_id == $ticket->status_changed_by_id)
+                                    <small class="text-sm text-gray-500 ml-3"> &middot; {{ __('edited') }} </small>
+                                @endif
+                                {{ $ticket->updated_at->diffForHumans() }}
+                            @endif
+                            </p>
                         </div>
                         <p class="font-bold text-gray-700 dark:text-gray-400 text-lg pb-2">{{ $ticket->title }}</p>
                         <p class="text-xs dark:text-gray-400 mb-4">Status : 

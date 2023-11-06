@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function tickets(): HasMany
     {
-        return $this->hasMany(Ticket::class)->latest();
+        return $this->hasMany(Ticket::class)->orderBy('updated_at','desc');
     }
 
     public function comments(): HasMany

@@ -8,9 +8,7 @@
                         <p class="text-gray-700 dark:text-gray-400  text-sm">{{ $ticket->created_at->diffForHumans() }}</p>
                         @unless ($ticket->created_at->eq($ticket->updated_at))
                         @if ($ticket->user_id == $ticket->status_changed_by_id)
-                        <small class="text-sm text-gray-500 ml-3"> &middot; {{ __('edited') }}</small>
-                        @else
-                        <small class="text-sm text-gray-500 ml-3"> &middot; {{ __('status updated') }}</small>
+                            <small class="text-sm text-gray-500 ml-3"> &middot; {{ __('edited') }}</small>
                         @endif
                         @endunless
                     </div>

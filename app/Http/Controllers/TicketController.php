@@ -25,11 +25,11 @@ class TicketController extends Controller
 
         if(isset($request->search))
         {
-            $tickets = $user->isAdmin ? Ticket::where('status', $searched)->latest()->paginate(5) : $user->tickets()->where('status', $searched)->paginate(5);
+            $tickets = $user->isAdmin ? Ticket::where('status', $searched)->orderBy('updated_at','desc')->paginate(5) : $user->tickets()->where('status', $searched)->paginate(5);
         }
         else
         {
-            $tickets = $user->isAdmin ? Ticket::latest()->paginate(5) : $user->tickets()->paginate(5);
+            $tickets = $user->isAdmin ? Ticket::orderBy('updated_at','desc')->paginate(5) : $user->tickets()->paginate(5);
         }
 
         return view('ticket.index', compact('tickets','searched'));
